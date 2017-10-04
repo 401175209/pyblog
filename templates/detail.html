@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <link rel="stylesheet" href='/static/css/highlights/github.css'>
+    <article class="post post-1">
+                    <header class="entry-header">
+                        <h1 class="entry-title">{{ post.title }}</h1>
+                        <div class="entry-meta">
+                            <span class="post-category"><a href="#">{{ post.category }}</a></span>
+                            <span class="post-date"><a href="#"><time class="entry-date"
+                                                                      datetime="{{ post.create_time }}">{{ post.create_time }}</time></a></span>
+                            <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                            <span class="comments-link"><a href="#">{{ post.comment_set.all.count }} 评论</a></span>
+                            <span class="views-count"><a href="#">{{ post.views }} 阅读</a></span>
+                        </div>
+                    </header>
+                    <div class="entry-content clearfix">
+                       {{ post.content|safe}}
+                    </div>
+                </article>
+    										<div class="height-40px"></div>
+                                <div id="donate_module" style="text-align:  center">
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+        .donate_bar a.btn_donate {
+            display: inline-block;
+            width: 82px;
+            height: 82px;
+            background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+            _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+
+            -webkit-transition: background 0s;
+            -moz-transition: background 0s;
+            -o-transition: background 0s;
+            -ms-transition: background 0s;
+            transition: background 0s;
+        }
+        .donate_bar a.btn_donate:hover {
+            background-position: 0 -82px;
+        }
+        .donate_bar .donate_txt {
+            display: block;
+            color: #9d9d9d;
+            font: 14px/2 "Microsoft Yahei";
+        }
+        .bold {
+            font-weight: bold;
+        }
+
+        img.qrcode {
+            width: 90%;
+            margin-bottom: 10px;
+        }
+        @media only screen and (min-width: 1025px) {
+            img.qrcode {
+                width: 40%;
+                margin-right: 10px;
+            }
+        }
+
+    </style>
+
+    <!-- btn_donate & tips -->
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 赏一个"></a>
+        <span class="donate_txt">您的支持是我最大的动力</span>
+    </div>
+    <!-- /btn_donate & tips -->
+
+    <!-- donate guide -->
+    <div id="donate_guide" class="donate_bar center hidden">
+
+        <img class="qrcode" src="http://ook6h6atk.bkt.clouddn.com/new%20image%20-%20emnk7.jpg" title="赏一个">
+
+        <img class="qrcode" src="http://ook6h6atk.bkt.clouddn.com/new%20image%20-%20eteqo.jpg" title="赏一个">
+
+    </div>
+    <!-- /donate guide -->
+
+    <!-- donate script -->
+    <script type="text/javascript">
+        document.getElementById('btn_donate').onclick = function() {
+            $('#donate_board').addClass('hidden');
+            $('#donate_guide').removeClass('hidden');
+        }
+
+        function donate_on_web() {
+            $('#donate').submit();
+        }
+    </script>
+    <!-- /donate script -->
+</div>
+    <section class="comment-area" id="comment-area">
+                    <hr>
+                    <h3>发表评论</h3>
+                    <form action="{% url "comments:post_comment" post.pk %}" method="post" class="comment-form">
+                        {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label for="{{ form.name.id_for_label }}">名字：</label>
+                          {{ form.name }}
+                          {{ form.name.errors }}
+                        </div>
+                        <div class="col-md-4">
+                          <label for="{{ form.email.id_for_label }}">邮箱：</label>
+                          {{ form.email }}
+                          {{ form.email.errors }}
+                        </div>
+
+                        <div class="col-md-12">
+                          <label for="{{ form.text.id_for_label }}">评论：</label>
+                          {{ form.text }}
+                          {{ form.text.errors }}
+                          <button type="submit" class="comment-btn">发表</button>
+                        </div>
+                      </div>    <!-- row -->
+                    </form>
+                    <div class="comment-list-panel">
+                        <h3>评论列表，共 <span>{{ post.comment_set.all.count }}</span> 条评论</h3>
+                        <ul class="comment-list list-unstyled">
+                            {% for comment in comment_list %}
+                             <li class="comment-item">
+                                <span class="nickname">{{ comment.name }}</span>
+                                <time class="submit-date" datetime="{{ comment.time }}">{{ comment.time }}6</time>
+                                <div class="text">
+                                   {{ comment.text }}
+                                </div>
+                            </li>
+                            {% empty %}
+                                暂无评论，快来抢沙发
+                            {% endfor %}
+
+
+
+                        </ul>
+                    </div>
+                </section>
+{% endblock main %}
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">文章目录</h3>
+       {{ post.toc|safe }}
+    </div>
+{% endblock toc %}
+

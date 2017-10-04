@@ -1,0 +1,96 @@
+
+
+
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+<h1 class="page-title">About Me</h1>
+    <article class="post">
+							<div class="entry-content clearfix">
+								<figure class="img-responsive-center">
+									<img class="img-responsive" src="/static/img/avator.jpg" alt="我的头像">
+								</figure>
+								大家好，我是微尘小四儿。欢迎来到我的个人技术博客。
+
+现在在一家初创公司工作，每天忙得像个傻逼，没有休息时间。现在主要研究django和thinkphp。博客也是为了记录自己在生活学习中的点点滴滴，希望和大家共同交流学习。
+										<div class="height-40px"></div>
+                                <div id="donate_module" style="text-align:  center">
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+        .donate_bar a.btn_donate {
+            display: inline-block;
+            width: 82px;
+            height: 82px;
+            background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+            _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+
+            -webkit-transition: background 0s;
+            -moz-transition: background 0s;
+            -o-transition: background 0s;
+            -ms-transition: background 0s;
+            transition: background 0s;
+        }
+        .donate_bar a.btn_donate:hover {
+            background-position: 0 -82px;
+        }
+        .donate_bar .donate_txt {
+            display: block;
+            color: #9d9d9d;
+            font: 14px/2 "Microsoft Yahei";
+        }
+        .bold {
+            font-weight: bold;
+        }
+
+        img.qrcode {
+            width: 90%;
+            margin-bottom: 10px;
+        }
+        @media only screen and (min-width: 1025px) {
+            img.qrcode {
+                width: 40%;
+                margin-right: 10px;
+            }
+        }
+
+    </style>
+
+    <!-- btn_donate & tips -->
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 赏一个"></a>
+        <span class="donate_txt">您的支持是我最大的动力</span>
+    </div>
+    <!-- /btn_donate & tips -->
+
+    <!-- donate guide -->
+    <div id="donate_guide" class="donate_bar center hidden">
+
+        <img class="qrcode" src="http://ook6h6atk.bkt.clouddn.com/new%20image%20-%20emnk7.jpg" title="赏一个">
+
+        <img class="qrcode" src="http://ook6h6atk.bkt.clouddn.com/new%20image%20-%20eteqo.jpg" title="赏一个">
+
+    </div>
+    <!-- /donate guide -->
+
+    <!-- donate script -->
+    <script type="text/javascript">
+        document.getElementById('btn_donate').onclick = function() {
+            $('#donate_board').addClass('hidden');
+            $('#donate_guide').removeClass('hidden');
+        }
+
+        function donate_on_web() {
+            $('#donate').submit();
+        }
+    </script>
+    <!-- /donate script -->
+</div>
+
+
+							</div>
+						</article>
+{% endblock main %}
