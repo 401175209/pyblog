@@ -1,7 +1,7 @@
 Django==1.11.5
 django-crispy-forms==1.6.1
 django-formtools==2.0
-httplib2==0.10.3
+httplib2==0.18.0
 Markdown==2.6.9
 markdown2==2.3.4
 olefile==0.44
